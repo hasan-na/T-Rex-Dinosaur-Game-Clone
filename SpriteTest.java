@@ -1,9 +1,8 @@
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
 import javafx.scene.shape.*;
 
 
-import org.junit.jupiter.api.Test;
+import org.junit.*;
 /**
  * 
  * A test class for the Sprite class

@@ -93,7 +93,7 @@ public class ObstacleGUI extends Obstacle{
 			}
 			
 			SpriteAnimation anim = new SpriteAnimation(imageView,duration,COUNT,COLUMNS,OFFSET_X,OFFSET_Y,WIDTH,HEIGHT);
-			anim.setCycleCount(anim.INDEFINITE);
+			anim.setCycleCount(Animation.INDEFINITE);
 		    anim.play();
 		}
 		/*

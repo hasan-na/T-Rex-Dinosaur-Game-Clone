@@ -1,3 +1,4 @@
+import javafx.animation.Animation;
 import javafx.geometry.Bounds;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
@@ -108,7 +109,7 @@ public class PlayerGUI extends Player
 		imageView = new ImageView(image);
 		imageView.setViewport(new Rectangle2D(offset_X, offset_Y, width, height));
 		SpriteAnimation animation = new SpriteAnimation(imageView,duration, count, columns, offset_X, offset_Y, width, height);
-		 animation.setCycleCount(animation.INDEFINITE);
+		 animation.setCycleCount(Animation.INDEFINITE);
 	     animation.play();
 	}
 	
