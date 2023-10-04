@@ -47,72 +47,35 @@ public class GUIGame extends Application implements KeyListener {
 			Pane layers = new Pane();
 			PlayerGUI player = new PlayerGUI();
 			World world = new World();
+			Label scoreLabel = new Label();
+			ScoreManager gameScore = new ScoreManager();
 			ArrayList<DataProvider> objects = world.getGame();
 			objects.set(0, player);
-		 
 			/*
 			 * Create new text game
 			 */
 			TextGame tg = new TextGame(objects);
-			tg.toPrint();
-			 
+			tg.toPrint(); 
 			/*
 			 * Add the layers that contain each game object to root Pane.
 			 */
 			root.getChildren().add(renderGUI(world, layers));
-			
-			/*
-			 * Add score label to root.
-			 */
-	 		Label scoreLabel = new Label();
 			root.getChildren().add(scoreLabel);
 			/*
 			 * Start the score count and update the label when score changes using a Timeline.
 			 */
-			ScoreManager gameScore = new ScoreManager();
 			gameScore.start();
 			Timeline scoreTimeline = new Timeline(new KeyFrame(Duration.seconds(0.0001), ev -> {
 			scoreLabel.setText("Score: " + gameScore.gettime()/10);}));
 			scoreTimeline.setCycleCount(Animation.INDEFINITE);
 			scoreTimeline.play();
-					
-
 		    /**
 		     * Timeline used to manage the constant generation of obstacles
 		     */
 			obstacleGenerationTimeline = new Timeline(new KeyFrame(Duration.seconds(0.5), ev -> {
 			ObstacleGUI newObstacle = new ObstacleGUI().generate();
 			
-			/*
-			 * Update text game.
-			 */
-			for (int i = 0; i < 3; i++) 
-			{
-				tg.updateByFrame();
-			}
-			tg.toPrint();
-			
-			/**
-			 * If there's a collision, the game should stop running
-			 */
-			if (player.checkCollision(world)) {
-				obstacleGenerationTimeline.stop();
-				scoreTimeline.stop();
-				if(newObstacle != null)
-					newObstacle.stop(true);
-				root.getChildren().add(gameOver(world));
-				System.out.print("Game Over");
-			}
-			
-			/*
-			 * If a new obstacle is generated, add the obstacle layer to the world.
-			 */
-			if (newObstacle != null)	
-			{
-				root.getChildren().add(newObstacle.getLayer());
-				world.add(newObstacle);
-				tg.generateType(newObstacle.getIsBird());
-			}
+			update(player, world, scoreTimeline, newObstacle, root, tg);
 			}));		
 			obstacleGenerationTimeline.setCycleCount(Animation.INDEFINITE);
 		    obstacleGenerationTimeline.play();
@@ -120,48 +83,76 @@ public class GUIGame extends Application implements KeyListener {
 		 * SCENE
 		 */
 			scene = new Scene(root,DataProvider.getWINDOW_WIDTH(),DataProvider.getWINDOW_HEIGHT());
-			
 		/**
 		 * EVENT HANDLER:
 		 * If either the up-arrow key or space bar is clicked, then the player jumps
 		 */
-			 scene.setOnKeyPressed(new EventHandler<KeyEvent>()
-				{
-					@Override
-					public void handle(KeyEvent event)
-					{
-						if ((event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.UP) && (player.getY() > 195))
-						{
-							
-							player.jump();
-							player.setY(200);
-							player.getSprite().setHitbox(player.getX(), 200);
-							player.velocityFinal = DataProvider.getFINAL_VELOCITY();
-							tg.jump();
-						}
-					}
-				});
+			handleInput(player, tg);
 		/**
 		 * STAGE
 		 */
-			/**
-			 * Give the stage a title
-			 */
-			primaryStage.setTitle("T-Rex Run");
-			/**
-			 * Set the scene on the primary stage and show the stage
-			 */
-			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);
-			primaryStage.show();
-			
-
+			setStage(primaryStage);
 		} 
 		catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public void updateTextGame(TextGame textGame){
+		for (int i = 0; i < 3; i++) 
+			{
+				textGame.updateByFrame();
+			}
+			textGame.toPrint();
+	}
+
+
+	public void update(PlayerGUI player, World world, Timeline scoreTimeline, ObstacleGUI newObstacle, Pane root, TextGame tg){
+		
+		updateTextGame(tg);
+
+		if (player.checkCollision(world)) {
+			obstacleGenerationTimeline.stop();
+			scoreTimeline.stop();
+			if(newObstacle != null)
+				newObstacle.stop(true);
+			root.getChildren().add(gameOver(world));
+			System.out.print("Game Over");
+			}
+		
+		if (newObstacle != null)	
+		{
+			root.getChildren().add(newObstacle.getLayer());
+			world.add(newObstacle);
+			tg.generateType(newObstacle.getIsBird());
+		}
+	}
+
+	public void handleInput(PlayerGUI player, TextGame tg){
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>()
+		{
+		 @Override
+		public void handle(KeyEvent event)
+		{
+		 if ((event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.UP) && (player.getY() > 195))
+			{
+				player.jump();
+				player.setY(200);
+				player.getSprite().setHitbox(player.getX(), 200);
+				player.velocityFinal = DataProvider.getFINAL_VELOCITY();
+				tg.jump();
+			}
+		}
+	    });
+	}
+
+	public void setStage(Stage primaryStage)
+	{
+		primaryStage.setTitle("T-Rex Run");
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.show();
+	}
 
 	/**
 	 * RENDER_GUI METHOD
