@@ -65,7 +65,7 @@ public class GroundGUI extends DataProvider{
 	 * Called upon when the game ends, as the ground animation must stop
 	 * @return new Pane that displays the still ground
 	 */
-	public Pane gameOver() {
+	public Pane stopAnimation() {
 		groundPane.getChildren().clear();
 		imageView = new ImageView(IMAGE);
 		imageView.setX(X);

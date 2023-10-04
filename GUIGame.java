@@ -186,7 +186,7 @@ public class GUIGame extends Application implements KeyListener {
 	public Pane gameOver(World w) {
 		Pane endScreen = new Pane();
 		((PlayerGUI) w.getGame().get(0)).end();
-		((GroundGUI) w.getGame().get(1)).gameOver();
+		((GroundGUI) w.getGame().get(1)).stopAnimation();
 		Image endImage = new Image(getClass().getResourceAsStream(DataProvider.getGAME_OVER()));
 		ImageView endImageView = new ImageView(endImage);
 		//Want the 'GAME OVER' to be perfectly centered
