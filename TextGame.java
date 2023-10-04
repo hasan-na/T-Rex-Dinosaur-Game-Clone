@@ -16,7 +16,7 @@ public class TextGame {
 	 * TEXT GAME CONSTRUCTOR
 	 * @param Array List of Game Objects to setup as the world in text version.
 	 */
-	public TextGame(ArrayList<GameObject> obj) {
+	public TextGame(ArrayList<DataProvider> obj) {
 		//Initialize a empty ground
 		for (int i = 0; i< 18 ; i++) {
 			sky.add(" ");

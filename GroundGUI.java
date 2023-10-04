@@ -10,7 +10,7 @@ import javafx.util.Duration;
  * A class which contains the graphics for the ground class and all animations for the ground 
  *
  */
-public class GroundGUI extends GameObject{
+public class GroundGUI extends DataProvider{
 	
 	/*
 	 * Instance Variables for GroundGUI

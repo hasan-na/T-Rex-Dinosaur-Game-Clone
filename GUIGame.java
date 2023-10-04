@@ -47,7 +47,7 @@ public class GUIGame extends Application implements KeyListener {
 			Pane layers = new Pane();
 			PlayerGUI player = new PlayerGUI();
 			World world = new World();
-			ArrayList<GameObject> objects = world.getGame();
+			ArrayList<DataProvider> objects = world.getGame();
 			objects.set(0, player);
 		 
 			/*
@@ -171,7 +171,7 @@ public class GUIGame extends Application implements KeyListener {
 	 */
 	public Pane renderGUI(World w, Pane toAdd)
 	{		
-		for(GameObject object : w.getGame()) {
+		for(DataProvider object : w.getGame()) {
 			toAdd.getChildren().add(object.getLayer());
 		}
 		return toAdd;

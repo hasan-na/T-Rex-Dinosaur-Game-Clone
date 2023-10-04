@@ -122,7 +122,7 @@ public class PlayerGUI extends Player
 	public boolean checkCollision(World world)
 	{
 		
-		for (GameObject g: world.getGame())
+		for (DataProvider g: world.getGame())
 		{
 			if (g instanceof ObstacleGUI && g != null)
 			{

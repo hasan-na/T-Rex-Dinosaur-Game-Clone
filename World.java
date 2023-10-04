@@ -9,7 +9,7 @@ public class World {
 	/*
 	 * Create a new ArrayList made up of Game Objects
 	 */
-	private static ArrayList<GameObject> game = new ArrayList<GameObject>();
+	private static ArrayList<DataProvider> game = new ArrayList<DataProvider>();
 	
 	/**
 	 *  WORLD CONSTRUCTOR
@@ -29,7 +29,7 @@ public class World {
 		/**
 		 *  Create a new ArrayList
 		 */
-		ArrayList<GameObject> preWorld = new ArrayList<GameObject>();
+		ArrayList<DataProvider> preWorld = new ArrayList<DataProvider>();
 		/**
 		 *  Add each object from the game ArrayList into the new ArrayList
 		 */
@@ -49,7 +49,7 @@ public class World {
 	 * Getter for ArrayList<GameObject> game.
 	 * @return the ArrayList of the GameObjects
 	 */
-	public ArrayList<GameObject> getGame() {
+	public ArrayList<DataProvider> getGame() {
 		return game;
 	}
 	
@@ -57,7 +57,7 @@ public class World {
 	 * ADD METHOD
 	 * @param Game Object g that will be added to the world.
 	 */
-	public void add(GameObject g) {
+	public void add(DataProvider g) {
         game.add(g);
     }
 }

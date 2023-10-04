@@ -6,7 +6,7 @@ import javafx.scene.layout.Pane;
  * obstacle class that contains random generation of obstacles 
  *
  */
-public class Obstacle extends GameObject {
+public class Obstacle extends DataProvider {
 	/*
 	 * Instance variable for Game Objects
 	 */

@@ -8,7 +8,7 @@ import javafx.scene.layout.Pane;
  * A class which contains the jump feature for the player class which updates hitboxes and the image coordinates
  *
  */
-public class Player extends GameObject 
+public class Player extends DataProvider
 {
 	/*
 	 * Instance variable for Player class
@@ -57,7 +57,7 @@ public class Player extends GameObject
 	 */
 	public boolean checkCollision(World world)
 	{
-		for (GameObject g: world.getGame())
+		for (DataProvider g: world.getGame())
 		{
 			if (g instanceof Obstacle && g != null)
 			{

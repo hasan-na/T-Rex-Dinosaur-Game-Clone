@@ -22,7 +22,7 @@ public class PlayerGUITest {
 		world.getGame().get(0).getSprite().setHitbox(0, 200);
 		world.getGame().add(new ObstacleGUI());
 		boolean expected = false;
-		for (GameObject g: world.getGame())
+		for (DataProvider g: world.getGame())
 		{
 			if (g instanceof ObstacleGUI && g != null)
 			{
