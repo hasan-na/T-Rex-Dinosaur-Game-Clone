@@ -1,3 +1,4 @@
+import javafx.animation.Animation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,7 +44,7 @@ public class GroundGUI extends GameObject{
 		imageView = new ImageView(IMAGE);
 		imageView.setViewport(new Rectangle2D(OFFSET_X, OFFSET_Y, WIDTH, HEIGHT));
 		SpriteAnimation animation = new SpriteAnimation(imageView, Duration.millis(MILLISDURATION), COUNT, COLUMNS, OFFSET_X, OFFSET_Y, WIDTH, HEIGHT);
-		animation.setCycleCount(animation.INDEFINITE);
+		animation.setCycleCount(Animation.INDEFINITE);
 	    animation.play();
 	}
     

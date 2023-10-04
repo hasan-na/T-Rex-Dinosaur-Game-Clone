@@ -1,14 +1,7 @@
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.ArrayList;
-import java.util.Random;
-
-import org.junit.jupiter.api.Test;
-import static org.junit.Assert.assertArrayEquals;
+import org.junit.*;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 import javafx.geometry.Bounds;
-import javafx.scene.image.Image;
+
 /**
  * 
  * A Test class for the Player class
