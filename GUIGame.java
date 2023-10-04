@@ -1,7 +1,7 @@
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-
-
+import java.util.HashMap;
+import java.util.Map;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -54,6 +54,7 @@ public class GUIGame extends Application implements KeyListener {
 			/*
 			 * Create new text game
 			 */
+
 			TextGame tg = new TextGame(objects);
 			tg.toPrint(); 
 			/*
@@ -69,13 +70,21 @@ public class GUIGame extends Application implements KeyListener {
 			scoreLabel.setText("Score: " + gameScore.gettime()/10);}));
 			scoreTimeline.setCycleCount(Animation.INDEFINITE);
 			scoreTimeline.play();
+
+			
 		    /**
 		     * Timeline used to manage the constant generation of obstacles
 		     */
 			obstacleGenerationTimeline = new Timeline(new KeyFrame(Duration.seconds(0.5), ev -> {
 			ObstacleGUI newObstacle = new ObstacleGUI().generate();
-			
-			update(player, world, scoreTimeline, newObstacle, root, tg);
+			ArrayList<Object> parameters = new ArrayList<>();
+    		parameters.add(player);
+    		parameters.add(world);
+    		parameters.add(scoreTimeline);
+    		parameters.add(newObstacle);
+    		parameters.add(root);
+    		parameters.add(tg);
+			update(parameters);
 			}));		
 			obstacleGenerationTimeline.setCycleCount(Animation.INDEFINITE);
 		    obstacleGenerationTimeline.play();
@@ -107,8 +116,13 @@ public class GUIGame extends Application implements KeyListener {
 	}
 
 
-	public void update(PlayerGUI player, World world, Timeline scoreTimeline, ObstacleGUI newObstacle, Pane root, TextGame tg){
-		
+	public void update(ArrayList<Object> params){
+		PlayerGUI player = (PlayerGUI) params.get(0);
+		World world = (World) params.get(1);
+		Timeline scoreTimeline = (Timeline) params.get(2);
+		ObstacleGUI newObstacle = (ObstacleGUI) params.get(3);
+		Pane root = (Pane) params.get(4);
+		TextGame tg = (TextGame) params.get(5);
 		updateTextGame(tg);
 
 		if (player.checkCollision(world)) {
