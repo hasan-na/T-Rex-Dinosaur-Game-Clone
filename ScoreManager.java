@@ -50,16 +50,6 @@ public class ScoreManager {
 	}
 	
 	/**
-	 *  MAIN METHOD
-	 *  Starts the score
-	 * @param args, not used.
-	 */
-	public static void main(String[] args) {
-		ScoreManager currenttime = new ScoreManager();
-		currenttime.start();
-	}
-	
-	/**
 	 *  GETTER FOR TIME
 	 *  @return the time in tenthsecondsPassed
 	 */
