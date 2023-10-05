@@ -4,7 +4,7 @@ import java.util.Random;
  * A class which contains the obstacle logic for the text based version, including the ground, bird, and cactus
  *
  */
-public class TextObstacle extends Obstacle{
+public class TextObstacle extends ObstacleGUI{
 	/*
 	 * Instance variables for Text Obstacle class
 	 */

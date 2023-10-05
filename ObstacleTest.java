@@ -14,10 +14,10 @@ import static org.junit.Assert.assertEquals;
  		 */
 	@Test
 	public void test_generate() {
-		Obstacle obstacle = new Obstacle();
-		Obstacle actual = obstacle.generate();
+		ObstacleGUI obstacle = new ObstacleGUI();
+		ObstacleGUI actual = obstacle.generate();
 		if(actual != null) {
-			Obstacle expected = new Obstacle();
+			ObstacleGUI expected = new ObstacleGUI();
 			assertEquals("Testing Obstacle Generation",  expected, actual);				
 			}
 		else {

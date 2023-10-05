@@ -59,7 +59,7 @@ public class Player extends DataProvider
 	{
 		for (DataProvider g: world.getGame())
 		{
-			if (g instanceof Obstacle && g != null)
+			if (g instanceof ObstacleGUI && g != null)
 			{
 				if(g.getSprite().getHitbox().getLayoutBounds().intersects(world.getGame().get(0).getSprite().getHitbox().getLayoutBounds()))
 						{
